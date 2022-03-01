@@ -53,6 +53,7 @@ namespace FundamentosCSHARP
             
             
             Console.WriteLine("************************************************");
+            //Instanciación de la clase de conexion de la base de datos y muestra de los nombres de cervezas
             CervezaBD cervezaBD = new CervezaBD();
             var cerv = cervezaBD.Get();
             
