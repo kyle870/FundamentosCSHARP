@@ -53,13 +53,22 @@ namespace FundamentosCSHARP
             
             
             Console.WriteLine("************************************************");
-            //Instanciación de la clase de conexion de la base de datos y muestra de los nombres de cervezas
+            //Instanciación de la clase de conexion de la base de datos
             CervezaBD cervezaBD = new CervezaBD();
+
+            //insertar cervezas
+            Cerveza cerveza1 = new Cerveza(15, "Corona");
+            cerveza1.Marca = "Minerva";
+            cerveza1.Alcohol = 6;
+            cervezaBD.Add(cerveza1);
+
+
+            //obtener las cervezas
             var cerv = cervezaBD.Get();
             
             foreach (var cer in cerv)
             {
-                Console.WriteLine($"Nombre: {cer.Nombre}");
+                Console.WriteLine($"Nombre: {cer.Nombre} Cantidad {cer.Cantidad}");
             }
         }
 
