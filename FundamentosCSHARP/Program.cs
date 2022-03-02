@@ -32,41 +32,50 @@ namespace FundamentosCSHARP
             }
 
             //Creamos una lista de clases
-            List<Cerveza> cervezas = new List<Cerveza>() { new Cerveza(10,"Prem")};
+            List<Cerveza> cerveza = new List<Cerveza>() { new Cerveza(10,"Prem")};
 
             //Forma 1 de crear un objeto, sin nombre de variable
-            cervezas.Add(new Cerveza(10));
+            cerveza.Add(new Cerveza(10));
 
             //Forma 2 de crear un objeto, con nombre de variable
             Cerveza erdinger = new Cerveza(50,"Cerveza de trigo");
-            cervezas.Add(erdinger);
+            cerveza.Add(erdinger);
 
             Console.WriteLine("**********************************************");
-            foreach (var cerveza in cervezas) { 
-                Console.WriteLine($"Cerveza nombre {cerveza.Nombre} y cantidad {cerveza.Cantidad}");
+            foreach (var item in cerveza) { 
+                Console.WriteLine($"Cerveza nombre {item.Nombre} y cantidad {item.Cantidad}");
             }
 
 
             Console.WriteLine("************************************************");
             var bebidaAlcoholica = new Vino(100);
             MostrarRecomendaciones(bebidaAlcoholica);
-            
-            
+                        
             Console.WriteLine("************************************************");
+            
             //Instanciación de la clase de conexion de la base de datos
             CervezaBD cervezaBD = new CervezaBD();
 
-            //insertar cervezas
-            Cerveza cerveza1 = new Cerveza(15, "Corona");
+            //insertar nueva cerveza
+            /*Cerveza cerveza1 = new Cerveza(15, "Corona");
             cerveza1.Marca = "Minerva";
             cerveza1.Alcohol = 6;
             cervezaBD.Add(cerveza1);
+            */
 
+            //editar una cerveza
+            /*Cerveza cerveza1 = new Cerveza(12, "Heineken");
+            cerveza1.Marca = "Heineken";
+            cerveza1.Alcohol = 8;
+            cervezaBD.Edit(cerveza1,5);*/
+
+            //eliminar una cerveza
+            cervezaBD.Delete(6);
 
             //obtener las cervezas
-            var cerv = cervezaBD.Get();
+            var cervezas = cervezaBD.Get();
             
-            foreach (var cer in cerv)
+            foreach (var cer in cervezas)
             {
                 Console.WriteLine($"Nombre: {cer.Nombre} Cantidad {cer.Cantidad}");
             }

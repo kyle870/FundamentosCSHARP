@@ -67,7 +67,44 @@ namespace FundamentosCSHARP.Models
                 connection.Close();
             }
         }
-    
+
+        public void Edit(Cerveza cerveza, int id)
+        {
+            string query = "UPDATE cerveza SET nombre=@nombre, marca=@marca, alcohol=@alcohol, cantidad=@cantidad WHERE id=@id";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombre", cerveza.Nombre);
+                command.Parameters.AddWithValue("@marca", cerveza.Marca);
+                command.Parameters.AddWithValue("@alcohol", cerveza.Alcohol);
+                command.Parameters.AddWithValue("@cantidad", cerveza.Cantidad);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            string query = "DELETE FROM cerveza WHERE id=@id";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+
     }
 
 }
