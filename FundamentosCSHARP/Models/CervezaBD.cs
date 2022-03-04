@@ -68,6 +68,7 @@ namespace FundamentosCSHARP.Models
             }
         }
 
+        //método de edición
         public void Edit(Cerveza cerveza, int id)
         {
             string query = "UPDATE cerveza SET nombre=@nombre, marca=@marca, alcohol=@alcohol, cantidad=@cantidad WHERE id=@id";
@@ -87,7 +88,8 @@ namespace FundamentosCSHARP.Models
                 connection.Close();
             }
         }
-
+        
+        //método de eliminación
         public void Delete(int id)
         {
             string query = "DELETE FROM cerveza WHERE id=@id";
