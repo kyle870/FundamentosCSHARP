@@ -25,9 +25,9 @@ namespace FundamentosCSHARP
              Cerveza cerveza1 = JsonSerializer.Deserialize<Cerveza>(miJson);*/
 
             //HTTP GET
-            string url = "https://jsonplaceholder.typicode.com/posts";
+            //string url = "https://jsonplaceholder.typicode.com/posts";
 
-            HttpClient client = new HttpClient();
+            /*HttpClient client = new HttpClient();
 
             var httpResponse = await client.GetAsync(url);
 
@@ -35,8 +35,31 @@ namespace FundamentosCSHARP
             {
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 var posts = JsonSerializer.Deserialize<List<Models.Post>>(content);
-            }
+            }*/
 
+            //HTTP POST
+            string url = "https://jsonplaceholder.typicode.com/posts/99";
+            var client = new HttpClient();
+
+            Post post = new Post()
+            {
+                userId = 50,
+                body = "Hola como van",
+                title = "Titulo del saludo"
+            };
+
+            var data = JsonSerializer.Serialize<Post>(post);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+
+            //hacer solicitud POST
+            var httpResponse = await client.PostAsync(url, content);
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                var result = await httpResponse.Content.ReadAsStringAsync();
+
+                var postResult = JsonSerializer.Deserialize<Post>(result);
+            }
         }    
     }
 }
